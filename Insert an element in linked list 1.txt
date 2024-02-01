@@ -55,3 +55,33 @@ Sample Output 2
 3
 2
 8
+
+class node:
+    def __init__(self,x):
+        self.data=x
+        self.next=None
+class linked:
+    def __init__(self):
+        self.head=self.tail=None
+    def create(self,x):
+        n=node(x)
+        if self.head==None:
+            self.head=self.tail=n
+        else:
+            self.tail.next=n
+            self.tail=n
+    def show(self):
+        temp=self.head
+        while temp!=None:
+            print(temp.data)
+            temp=temp.next
+l1=linked()
+while True:
+    i=int(input())
+    if i<0:
+        break
+    else:
+        l1.create(i)
+        
+l1.show()
+        
