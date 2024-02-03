@@ -1,0 +1,79 @@
+def addnode(v):
+    global n
+    if v in nodes:
+        print(v,"already existed")
+    else:
+        nodes.append(v)
+        n=n+1
+    for x in graph:
+        x.append(0)
+    temp=[]
+    for i in range(n):
+        temp.append(0)
+    graph.append(temp)
+def show():
+    for i in range(n):
+        for j in range(n):
+            print(graph[i][j],end=" ")
+        print()
+def addEdge(node1,node2):
+    if node1 not in nodes:
+        print(node1,"is not present ")
+    elif node2 not in nodes:
+        print(node2,"is not present")
+    else:
+        i=nodes.index(node1)
+        j=nodes.index(node2)
+        graph[i][j]=1
+        show()
+def removeVertex():
+    global n
+    if n == 0:
+        print("Graph is empty. No nodes to remove.")
+        return
+
+    v = input("Enter the node to remove: ")
+    if v not in nodes:
+        print(v, "is not present in the graph.")
+        return
+
+    i = nodes.index(v)
+    nodes.remove(v)
+    n -= 1
+
+    
+    for j in range(i, n):
+        graph[j] = graph[j + 1]
+        
+        for k in range(n):
+            graph[k][j] = graph[k][j + 1]
+            
+
+   
+    graph.pop()
+   
+
+    print(v, "has been removed from the graph.")
+nodes=[]
+graph=[]
+n=0
+while True:
+    print("\n1. Add node\n2. Add edge\n3. Print graph\n5. Remove node\n6. Exit")
+    ch = int(input("Enter your choice: "))
+    if ch == 1:
+        v=input("enter:")
+        addnode(v)
+       
+    elif ch == 2:
+        node1=input("enter:")
+        node2=input("enter:")
+        addEdge(node1,node2)
+   
+    elif ch == 3:
+        show()
+    elif ch == 4:
+        removeVertex()
+    elif ch == 5:
+        break
+    else:
+        print("Invalid choice")
